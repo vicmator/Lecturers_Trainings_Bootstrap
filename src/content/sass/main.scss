@@ -1,0 +1,29 @@
+@import "../../../node_modules/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
+@import "../../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/_theme.scss";
+
+// Variables declaration
+$baseSize: 14px;
+
+// external imports
+@import 'https://fonts.googleapis.com/css?family=Raleway';
+
+
+@import "style";
+@import "_variables";
+
+/* Basics */
+// html {
+//     font-family: 'Raleway', sans-serif;
+//     font-size: $baseSize;
+// }
+
+// h1 {
+//     font-size: $baseSize + 10px;
+// }
+
+// a {
+//   background-color: $mainColor;
+//   &:hover{
+//     background-color: $hoverColor;
+//   }
+// }

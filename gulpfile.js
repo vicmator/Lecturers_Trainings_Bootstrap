@@ -3,7 +3,10 @@ var gulp = require('gulp'),
     del = require('del'),
     concat = require('gulp-concat'),
     uglify = require('gulp-uglify'),
-    htmlreplace = require('gulp-html-replace');
+    htmlreplace = require('gulp-html-replace'),
+    sass = require('gulp-sass'),
+    image = require('gulp-image')
+    ;
 
 gulp.task('connect', function() {
     connect.server({
@@ -34,23 +37,43 @@ gulp.task('create-bundle', function() {
 gulp.task('generate-prod-html', function() {
     return gulp.src('./src/index.html')
         .pipe(htmlreplace({
-            'js': '<script src="app.min.js"></script>'
+            'js': '<script src="app.min.js"></script>',
+            'sass': '<link rel="stylesheet" href="main.css">'
         }))
         .pipe(gulp.dest('./dist'));
 });
 
+//WATCH
 gulp.task('watch', function() {
-  gulp.watch(['./src/**/*.html', './src/**/*.js'], gulp.series('build-dev'))
+    gulp.watch(['./src/**/*.html', './src/js/**/*.js', './src/content/sass/**/*.scss'], gulp.series('build'))
 });
 
 gulp.task('force-reload', function() {
-  return   gulp.src('./src/*.html')
-             .pipe(connect.reload());
+    return gulp.src('./src/*.html')
+        .pipe(connect.reload());
 });
+
+//SASS
+gulp.task('sass', function() {
+    return gulp.src('./src/content/sass/**/*.scss')
+        .pipe(sass().on('error', sass.logError))
+        .pipe(gulp.dest('./dist/content/css/'));
+});
+
+//IMAGE
+gulp.task('image', function () {
+  gulp.src('./src/content/images/*')
+    .pipe(image())
+    .pipe(gulp.dest('./dist/content/images/'));
+});
+
 
 gulp.task('web', gulp.parallel('connect', 'watch'));
 //Dev
-gulp.task('build-dev', gulp.series('clean', 'copy-dev', 'force-reload'));
+gulp.task('build', gulp.series('clean', 'copy-dev', 'sass', 'force-reload'));
+gulp.task('build-dev', gulp.series('clean', 'copy-dev', 'sass', 'image'));
+//Only Proccess images
+// gulp.task('image', gulp.series('image'));
 //Production
 gulp.task('build-prod', gulp.series('clean', gulp.parallel('generate-prod-html', 'create-bundle')));
 gulp.task('default', gulp.parallel('web'));
