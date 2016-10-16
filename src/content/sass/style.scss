@@ -1,3 +1,8 @@
 $mainColor: red;
 $hoverColor: green;
 $hoverColorAux: darken($hoverColor, 20%);
+$colorHeaderTable: #D0D0D0;
+
+@mixin nameTitleColumn() {
+  padding-left: 0px;
+}
