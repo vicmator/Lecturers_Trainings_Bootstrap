@@ -1,9 +1,16 @@
 function dropDown() {
-  var logoImg = "./content/images/dropdown-arrow.png";
-    const img = document.createElement('img');
-    img.src = logoImg;
 
-    document.getElementById('arrowDrop').src = logoImg;
+    var classElement = document.getElementById("iconDrop").className;
+    if(classElement.indexOf('glyphicon-chevron-up') !== -1){
+      document.getElementById("iconDrop").className = "";
+      document.getElementById("iconDrop").className = "glyphicon glyphicon-chevron-down pull-right";
+      document.getElementById('bodyTable').style.display = 'none';
+    }
+    else {
+      document.getElementById("iconDrop").className = "";
+      document.getElementById("iconDrop").className = "glyphicon glyphicon-chevron-up pull-right";
+      document.getElementById('bodyTable').removeAttribute("style");
+    }
 
-    document.getElementById('bodyTable').style.display = 'none';
+    // document.getElementById('bodyTable').style.display = 'none';
 }
