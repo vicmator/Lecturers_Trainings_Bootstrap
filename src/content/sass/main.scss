@@ -11,19 +11,28 @@ $baseSize: 14px;
 @import "style";
 @import "_variables";
 
-/* Basics */
-// html {
-//     font-family: 'Raleway', sans-serif;
-//     font-size: $baseSize;
-// }
+#imgPeople {
+  width:45px;
+  margin:5px;
+}
 
-// h1 {
-//     font-size: $baseSize + 10px;
-// }
+.pag-header{
+  padding-bottom: 9px;
+  margin:20px 0 30px;
+}
 
-// a {
-//   background-color: $mainColor;
-//   &:hover{
-//     background-color: $hoverColor;
-//   }
-// }
+.h1Title{
+  text-align: center;
+}
+
+.elementCentered {
+  text-align: center;
+}
+
+.colorHeaderTable {
+  background-color: $colorHeaderTable;
+}
+
+.nameColunmPadding {
+  @include nameTitleColumn;
+}

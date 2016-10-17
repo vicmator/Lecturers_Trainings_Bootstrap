@@ -1,2 +1,3 @@
 # Lecturers_Trainings_Bootstrap
-Example bootstrap of lecturers trainings
+
+Use of Gulp 4 with Bootstrap to do a simple Page (Lecturers Trainings)
