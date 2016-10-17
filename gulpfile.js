@@ -59,11 +59,17 @@ gulp.task('sass', function() {
         .pipe(gulp.dest('./dist/content/css/'));
 });
 
+//FONT
+gulp.task('fonts', function() {
+    return gulp.src(['node_modules/bootstrap-sass/assets/fonts/bootstrap/glyphicons-halflings-regular.*'])
+            .pipe(gulp.dest('dist/content/fonts/bootstrap/'));
+});
+
 
 gulp.task('web', gulp.parallel('connect', 'watch'));
 //Dev
-gulp.task('build', gulp.series('clean', 'copy-dev', 'sass', 'force-reload'));
-gulp.task('build-dev', gulp.series('clean', 'copy-dev', 'sass'));
+gulp.task('build', gulp.series('clean', 'copy-dev', 'sass', 'fonts', 'force-reload'));
+gulp.task('build-dev', gulp.series('clean', 'copy-dev', 'sass', 'fonts'));
 //Production
 gulp.task('build-prod', gulp.series('clean', gulp.parallel('generate-prod-html', 'create-bundle')));
 gulp.task('default', gulp.parallel('web'));
